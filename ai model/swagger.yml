@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: "RP Flask REST API"
+  description: "An API about people and notes"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    Data:
+      type: "object"
+      required:
+        - ticker
+      properties:
+        ticker:
+          type: "string"
+
+paths:
+  /data_numeric:
+    get:
+      operationId: "estimate.read_data"
+      responses:
+        "200":
+          description: "Successfully read data"
+  /data_dates:
+    get:
+      operationId: "estimate.read_dates"
+      responses:
+        "200":
+          description: "Successfully read data"
+  /ticker:
+    post:
+      operationId: "estimate.ticker"
+      tags:
+        - Data
+      requestBody:
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "data"
+              $ref: "#/components/schemas/Data"
+      responses:
+        "200":
+          description: "Successfully transferred data"
+  /estimation:
+    get:
+      operationId: "estimate.make_estimation"
+      responses:
+        "200":
+          description: "Successfully estimated"

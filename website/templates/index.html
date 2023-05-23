@@ -1,0 +1,29 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <title>
+        Home
+    </title>
+</head>
+<body>
+    <div>Home page</div>
+     <div>
+         <img src="data:image/png;base64, {{ plot_url }}" width="1000">
+    </div>
+<form method="post">
+    <label for="title">S&P500 company ticker</label>
+    <br>
+        <input type="text" name="title"
+               placeholder="Message title"
+               value="{{ request.form['title'] }}"></input>
+    <br>
+    <button type="submit">Submit</button>
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+        <div class="alert">{{ message }}</div>
+    </div>
+</form>
+</body>
+</html>
